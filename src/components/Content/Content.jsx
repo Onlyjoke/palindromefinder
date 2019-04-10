@@ -11,7 +11,8 @@ const Content = (props) => {
         findPalindrome
     } = props;
     let palindrome = [];
-    const splitText = text.trim().split('.');
+    const re = /[.?!;:]/g;
+    const splitText = text.trim().split(re);
 
     splitText.forEach((item) => {
         if (isPalindrome(item) && item.length >= 3) {
@@ -23,7 +24,7 @@ const Content = (props) => {
 
     function isPalindrome(text) {
         const toLowerText = text.toLowerCase();
-        const newText = toLowerText.replace(/\s+/g, '');
+        const newText = toLowerText.replace(/[.,#!$%&;:{}=\-_`’~()\s+]/g, '');
 
         return newText.split('').join('') === newText.split('').reverse().join('');
     }
